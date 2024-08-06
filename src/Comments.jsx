@@ -7,11 +7,22 @@ import "./Comments.css";
 export default function Comments() {
 	const { article_id } = useParams();
 	const [comments, setComments] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
-		fetchCommentsByArticleId(article_id).then((comments) => {
-			setComments(comments);
-		});
+		fetchCommentsByArticleId(article_id)
+			.then((comments) => {
+				setComments(comments);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				setIsLoading(false);
+			});
 	}, []);
+
+	if (isLoading) {
+		return <img src="../loading.svg" alt="loading animation" />;
+	}
 
 	return (
 		<>
