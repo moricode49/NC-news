@@ -1,0 +1,13 @@
+/* #upvote {
+	background-image: url("../upvote.ico");
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+} */
+
+#downvote {
+	background-image: url("../downvote.ico");
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+}

@@ -21,3 +21,14 @@ export const fetchCommentsByArticleId = (articleId) => {
 		return response.data;
 	});
 };
+
+export const giveVotes = (articleId, upDownVote) => {
+	if (upDownVote === "upvote") {
+		upDownVote = 1;
+	} else {
+		upDownVote = -1;
+	}
+	return newsAPI
+		.patch(`/articles/${articleId}`, { inc_votes: `${upDownVote}` })
+		.then((response) => {});
+};
