@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchArticleById } from "./api";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
+import Votes from "./Votes";
 
 export default function Article() {
 	const { article_id } = useParams();
@@ -31,7 +32,11 @@ export default function Article() {
 				<p>Topic: {singleArticle.topic}</p>
 				<img src={singleArticle.article_img_url}></img>
 				<p>{singleArticle.body}</p>
-				<p>Votes: {singleArticle.votes}</p>
+				<Votes
+					votes={singleArticle.votes}
+					articleId={singleArticle.article_id}
+				/>
+				{/* <p>Votes: {singleArticle.votes}</p> */}
 			</div>
 			<Comments />
 		</>
