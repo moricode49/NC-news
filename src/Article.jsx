@@ -6,12 +6,22 @@ import Comments from "./Comments";
 export default function Article() {
 	const { article_id } = useParams();
 	const [singleArticle, setSingleArticle] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		fetchArticleById(article_id).then((article) => {
-			setSingleArticle(article);
-		});
+		fetchArticleById(article_id)
+			.then((article) => {
+				setSingleArticle(article);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				setIsLoading(false);
+			});
 	}, []);
+
+	if (isLoading) {
+		return <img src="../loading.svg" alt="loading animation" />;
+	}
 
 	return (
 		<>
