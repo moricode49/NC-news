@@ -8,7 +8,7 @@ export default function ArticleCard({
 	article_id,
 }) {
 	return (
-		<Link to={`./${article_id}`}>
+		<Link to={`/articles/${article_id}`}>
 			<article>
 				<p>{title}</p>
 				<p>

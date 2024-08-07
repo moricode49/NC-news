@@ -25,6 +25,7 @@ function App() {
 					<Route path="/articles" element={<Articles />} />
 					<Route path="/articles/:article_id" element={<Article />} />
 					<Route path="/users" element={<Users />} />
+					{/* //fetch to get routes? */}
 					<Route path="/articles/coding" element={<TopicCoding />} />
 					<Route path="/articles/football" element={<TopicFootball />} />
 					<Route path="/articles/cooking" element={<TopicCooking />} />
