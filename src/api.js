@@ -28,7 +28,18 @@ export const giveVotes = (articleId, upDownVote) => {
 	} else {
 		upDownVote = -1;
 	}
+	return newsAPI.patch(`/articles/${articleId}`, {
+		inc_votes: `${upDownVote}`,
+	});
+};
+
+export const postComment = (articleId, comment) => {
 	return newsAPI
-		.patch(`/articles/${articleId}`, { inc_votes: `${upDownVote}` })
-		.then((response) => {});
+		.post(`/articles/${articleId}/comments`, {
+			username: "grumpy19",
+			body: comment,
+		})
+		.then((response) => {
+			return response;
+		});
 };
