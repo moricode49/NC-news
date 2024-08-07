@@ -1,0 +1,12 @@
+.avatar {
+	max-width: 200px;
+	max-height: 200px;
+}
+
+.user-cards {
+	border: red 1px solid;
+}
+
+p {
+	color: red;
+}

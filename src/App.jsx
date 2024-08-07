@@ -4,21 +4,26 @@ import Header from "./Header";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Article from "./Article";
-import NewComment from "./NewComment";
+import Users from "./Users";
+import { UserContext } from "./UserContext";
+import { useState } from "react";
 
 function App() {
+	const [loggedInUser, setLoggedInUser] = useState({});
+	const isLoggedIn = Object.keys(loggedInUser).length > 0;
 	return (
 		<>
-			<Header />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/articles" element={<Articles />} />
-				<Route path="/articles/:article_id" element={<Article />} />
-				{/* <Route
-					path="/articles/:article_id/new-comment"
-					element={<NewComment />}
-				/> */}
-			</Routes>
+			<UserContext.Provider
+				value={{ loggedInUser, setLoggedInUser, isLoggedIn }}
+			>
+				<Header />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/articles" element={<Articles />} />
+					<Route path="/articles/:article_id" element={<Article />} />
+					<Route path="/users" element={<Users />} />
+				</Routes>
+			</UserContext.Provider>
 		</>
 	);
 }

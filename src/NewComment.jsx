@@ -7,25 +7,27 @@ import "./NewComment.css";
 export default function NewComment() {
 	const { article_id } = useParams();
 	const [comment, setComment] = useState("");
-	const [postedComment, setPostedComment] = useState("");
+	const [commentResponse, setCommentResponse] = useState("");
+
 	function handleChange(e) {
 		setComment(e.target.value);
 	}
+
 	function handleSubmit(e) {
 		e.preventDefault();
 		postComment(article_id, comment).then((response) => {
 			if (response.message === "Network Error") {
-				setPostedComment("network-error");
+				setCommentResponse("network-error");
 			} else if (response) {
-				setPostedComment("posted");
+				setCommentResponse("posted");
 			}
 		});
 		setComment("");
 	}
 
-	if (postedComment === "network-error") {
+	if (commentResponse === "network-error") {
 		return <p id="network-error">Network Error</p>;
-	} else if (postedComment === "posted") {
+	} else if (commentResponse === "posted") {
 		return (
 			<>
 				<p id="posted">Posted!</p>
