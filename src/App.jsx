@@ -7,6 +7,9 @@ import Article from "./Article";
 import Users from "./Users";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
+import TopicCoding from "./TopicCoding";
+import TopicCooking from "./TopicCooking";
+import TopicFootball from "./TopicFootball";
 
 function App() {
 	const [loggedInUser, setLoggedInUser] = useState({});
@@ -22,6 +25,9 @@ function App() {
 					<Route path="/articles" element={<Articles />} />
 					<Route path="/articles/:article_id" element={<Article />} />
 					<Route path="/users" element={<Users />} />
+					<Route path="/articles/coding" element={<TopicCoding />} />
+					<Route path="/articles/football" element={<TopicFootball />} />
+					<Route path="/articles/cooking" element={<TopicCooking />} />
 				</Routes>
 			</UserContext.Provider>
 		</>
