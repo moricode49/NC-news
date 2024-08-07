@@ -21,14 +21,13 @@ export default function NewComment() {
 			.then(() => {
 				setCommentResponse("posted");
 			})
-			.catch((error) => {
+			.catch(() => {
 				setCommentResponse("unsuccessful");
 			});
 		setComment("");
 	}
 
 	if (commentResponse === "posted") {
-		console.log(commentResponse);
 		return (
 			<>
 				<p id="posted">Posted!</p>

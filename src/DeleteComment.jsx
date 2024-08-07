@@ -4,12 +4,19 @@ import { deleteComment } from "./api";
 export default function DeleteComment({ comment_id }) {
 	const [deletedComment, setDeletedComment] = useState("");
 	function handleDelete(e) {
-		setDeletedComment(e.target.value);
-		deleteComment(e.target.value);
+		deleteComment(e.target.value)
+			.then(() => {
+				setDeletedComment("deleted");
+			})
+			.catch(() => {
+				setDeletedComment("unsuccessful");
+			});
 	}
 
-	if (deletedComment) {
+	if (deletedComment === "deleted") {
 		return <p>Comment deleted!</p>;
+	} else if (deletedComment === "unsuccessful") {
+		return <p>Unsuccessful!</p>;
 	}
 	return (
 		<button onClick={handleDelete} value={comment_id}>
