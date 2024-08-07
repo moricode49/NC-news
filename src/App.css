@@ -45,3 +45,12 @@ nav {
 #article-card-span {
 	color: #8b0000;
 }
+
+#logged-in-welcome {
+	color: #8b0000;
+}
+
+.welcome-user-img {
+	max-width: 40px;
+	max-height: 40px;
+}

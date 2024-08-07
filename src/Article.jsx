@@ -36,7 +36,6 @@ export default function Article() {
 					votes={singleArticle.votes}
 					articleId={singleArticle.article_id}
 				/>
-				{/* <p>Votes: {singleArticle.votes}</p> */}
 			</div>
 			<Comments />
 		</>

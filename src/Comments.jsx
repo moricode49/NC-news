@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchCommentsByArticleId } from "./api";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import "./Comments.css";
 import NewComment from "./NewComment";
+import { UserContext } from "./UserContext";
 
 export default function Comments() {
+	const { isLoggedIn } = useContext(UserContext);
 	const { article_id } = useParams();
 	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -26,8 +28,11 @@ export default function Comments() {
 		setNewComment(true);
 	}
 	if (newComment) {
-		return <NewComment />;
-		// <Link to={`./new-comment`}></Link>;
+		if (isLoggedIn) {
+			return <NewComment />;
+		} else {
+			return <p>Login to post a comment!</p>;
+		}
 	}
 
 	if (isLoading) {

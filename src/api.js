@@ -4,6 +4,12 @@ const newsAPI = axios.create({
 	baseURL: "https://nc-news-lrsx.onrender.com/api/",
 });
 
+export const fetchAllUsers = () => {
+	return newsAPI.get("/users").then((response) => {
+		return response.data;
+	});
+};
+
 export const fetchAllArticles = () => {
 	return newsAPI.get("/articles").then((response) => {
 		return response.data;
