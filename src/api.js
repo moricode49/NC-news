@@ -10,14 +10,22 @@ export const fetchAllUsers = () => {
 	});
 };
 
-export const fetchAllArticles = () => {
-	return newsAPI.get("/articles").then((response) => {
-		return response.data;
-	});
+export const fetchArticles = (topic) => {
+	return newsAPI
+		.get("/articles", { params: { topic: topic } })
+		.then((response) => {
+			return response.data;
+		});
 };
 
 export const fetchArticleById = (id) => {
 	return newsAPI.get(`/articles/${id}`).then((response) => {
+		return response.data;
+	});
+};
+
+export const fetchTopics = () => {
+	return newsAPI.get(`/topics`).then((response) => {
 		return response.data;
 	});
 };
