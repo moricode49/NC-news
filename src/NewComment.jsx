@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postComment } from "./api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import "./NewComment.css";
+import { UserContext } from "./UserContext";
 
 export default function NewComment() {
+	const { loggedInUser } = useContext(UserContext);
 	const { article_id } = useParams();
 	const [comment, setComment] = useState("");
 	const [commentResponse, setCommentResponse] = useState("");
@@ -15,22 +17,28 @@ export default function NewComment() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		postComment(article_id, comment).then((response) => {
-			if (response.message === "Network Error") {
-				setCommentResponse("network-error");
-			} else if (response) {
+		postComment(article_id, loggedInUser.username, comment)
+			.then(() => {
 				setCommentResponse("posted");
-			}
-		});
+			})
+			.catch((error) => {
+				setCommentResponse("unsuccessful");
+			});
 		setComment("");
 	}
 
-	if (commentResponse === "network-error") {
-		return <p id="network-error">Network Error</p>;
-	} else if (commentResponse === "posted") {
+	if (commentResponse === "posted") {
+		console.log(commentResponse);
 		return (
 			<>
 				<p id="posted">Posted!</p>
+				<Comments />
+			</>
+		);
+	} else if (commentResponse === "unsuccessful") {
+		return (
+			<>
+				<p>Unsuccessful!</p>
 				<Comments />
 			</>
 		);

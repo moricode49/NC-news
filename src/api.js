@@ -39,15 +39,11 @@ export const giveVotes = (articleId, upDownVote) => {
 	});
 };
 
-export const postComment = (articleId, comment) => {
-	return newsAPI
-		.post(`/articles/${articleId}/comments`, {
-			username: "grumpy19",
-			body: comment,
-		})
-		.then((response) => {
-			return response;
-		});
+export const postComment = (articleId, username, comment) => {
+	return newsAPI.post(`/articles/${articleId}/comments`, {
+		username: username,
+		body: comment,
+	});
 };
 
 export const deleteComment = (commentId) => {
