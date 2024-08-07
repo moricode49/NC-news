@@ -53,6 +53,7 @@ export default function Comments() {
 						body={comment.body}
 						votes={comment.votes}
 						created_at={comment.created_at}
+						comment_id={comment.comment_id}
 					/>
 				);
 			})}
