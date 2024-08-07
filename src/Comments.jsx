@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchCommentsByArticleId } from "./api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import "./Comments.css";
+import NewComment from "./NewComment";
 
 export default function Comments() {
 	const { article_id } = useParams();
 	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [newComment, setNewComment] = useState(false);
 
 	useEffect(() => {
 		fetchCommentsByArticleId(article_id)
@@ -20,6 +22,14 @@ export default function Comments() {
 			});
 	}, []);
 
+	function handleClick() {
+		setNewComment(true);
+	}
+	if (newComment) {
+		return <NewComment />;
+		// <Link to={`./new-comment`}></Link>;
+	}
+
 	if (isLoading) {
 		return <img src="../loading.svg" alt="loading animation" />;
 	}
@@ -27,6 +37,9 @@ export default function Comments() {
 	return (
 		<>
 			<h3>Comments</h3>
+			<button id="new-comment" onClick={handleClick}>
+				Post a New Comment
+			</button>
 			{comments.map((comment) => {
 				return (
 					<CommentCard
