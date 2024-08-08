@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { deleteComment } from "./api";
 
-export default function DeleteComment({ comment_id }) {
+export default function DeleteComment({
+	comment_id,
+	setDeletedCommentResponse,
+}) {
 	const [deletedComment, setDeletedComment] = useState("");
 	function handleDelete(e) {
 		deleteComment(e.target.value)
@@ -14,7 +17,7 @@ export default function DeleteComment({ comment_id }) {
 	}
 
 	if (deletedComment === "deleted") {
-		return <p>Comment deleted!</p>;
+		setDeletedCommentResponse(true);
 	} else if (deletedComment === "unsuccessful") {
 		return <p>Unsuccessful!</p>;
 	}

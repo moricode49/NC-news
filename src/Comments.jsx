@@ -29,7 +29,12 @@ export default function Comments() {
 	}
 	if (newComment) {
 		if (isLoggedIn) {
-			return <NewComment />;
+			return (
+				<>
+					<NewComment />
+					<Comments />
+				</>
+			);
 		} else {
 			return <p>Login to post a comment!</p>;
 		}

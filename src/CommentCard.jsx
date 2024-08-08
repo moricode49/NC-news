@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
 import "./CommentCard.css";
-
-import { deleteComment } from "./api";
 import { UserContext } from "./UserContext";
 import DeleteComment from "./DeleteComment";
 
@@ -13,28 +11,33 @@ export default function CommentCard({
 	comment_id,
 }) {
 	const { loggedInUser } = useContext(UserContext);
-	const { isLoggedIn } = useContext(UserContext);
+	const [deletedCommentResponse, setDeletedCommentResponse] = useState(false);
 
-	if (isLoggedIn) {
-		if (loggedInUser.username === author) {
-			return (
-				<section>
-					<p>{body}</p>
-					<p>User: {author}</p>
-					<p>Votes: {votes}</p>
-					<p>Posted: {created_at}</p>
-					<DeleteComment comment_id={comment_id} />
-				</section>
-			);
-		}
+	if (deletedCommentResponse) {
+		return <p>Comment Deleted!</p>;
 	}
 
-	return (
-		<section>
-			<p>{body}</p>
-			<p>User: {author}</p>
-			<p>Votes: {votes}</p>
-			<p>Posted: {created_at}</p>
-		</section>
-	);
+	if (loggedInUser.username === author) {
+		return (
+			<section>
+				<p>{body}</p>
+				<p>User: {author}</p>
+				<p>Votes: {votes}</p>
+				<p>Posted: {created_at}</p>
+				<DeleteComment
+					comment_id={comment_id}
+					setDeletedCommentResponse={setDeletedCommentResponse}
+				/>
+			</section>
+		);
+	} else {
+		return (
+			<section>
+				<p>{body}</p>
+				<p>User: {author}</p>
+				<p>Votes: {votes}</p>
+				<p>Posted: {created_at}</p>
+			</section>
+		);
+	}
 }
