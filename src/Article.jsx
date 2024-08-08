@@ -10,18 +10,21 @@ export default function Article() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		fetchArticleById(article_id)
-			.then((article) => {
-				setSingleArticle(article);
-				setIsLoading(false);
-			})
-			.catch((error) => {
-				setIsLoading(false);
-			});
+		fetchArticleById(article_id).then((article) => {
+			setIsLoading(false);
+			setSingleArticle(article);
+		});
 	}, []);
 
 	if (isLoading) {
 		return <img src="../loading.svg" alt="loading animation" />;
+	}
+
+	if (
+		singleArticle === "article does not exist" ||
+		singleArticle === "Bad request"
+	) {
+		return <p>Article does not exist!</p>;
 	}
 
 	return (

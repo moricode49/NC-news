@@ -36,7 +36,7 @@ export default function TopicFootball() {
 			<nav>
 				<h3>Topics: </h3>
 				{topics.map((topic) => {
-					const path = "/articles/" + topic.slug;
+					const path = "/topics/" + topic.slug;
 					return (
 						<Link to={path} key={topic.slug}>
 							{topic.slug.toUpperCase()}
