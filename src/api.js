@@ -21,13 +21,19 @@ export const fetchArticles = (sort_by, order, topic) => {
 };
 
 export const fetchArticleById = (id) => {
-	return newsAPI.get(`/articles/${id}`).then((response) => {
-		return response.data;
-	});
+	return newsAPI
+		.get(`/articles/${id}`)
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data.msg;
+		});
 };
 
 export const fetchTopics = () => {
 	return newsAPI.get(`/topics`).then((response) => {
+		console.log("here");
 		return response.data;
 	});
 };
