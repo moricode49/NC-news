@@ -62,8 +62,8 @@ export default function Articles() {
 						setSortBy(e.target.value);
 					}}
 				>
-					<option value="date">date</option>
-					<option value="comments">comments</option>
+					<option value="created_at">date</option>
+					<option value="comment_count">comments</option>
 					<option value="votes">votes</option>
 				</select>
 				Order:{" "}
