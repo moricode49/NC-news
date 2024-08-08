@@ -46,14 +46,13 @@ export default function NewComment() {
 	return (
 		<form onSubmit={handleSubmit}>
 			<label htmlFor="comment"></label>
-			<input
+			<textarea
 				id="comment"
-				type="text"
 				placeholder="Leave your comments"
 				onChange={handleChange}
 				value={comment}
 				required
-			/>
+			></textarea>
 			<button type="submit">Submit</button>
 		</form>
 	);
