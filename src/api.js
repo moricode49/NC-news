@@ -33,7 +33,6 @@ export const fetchArticleById = (id) => {
 
 export const fetchTopics = () => {
 	return newsAPI.get(`/topics`).then((response) => {
-		console.log("here");
 		return response.data;
 	});
 };

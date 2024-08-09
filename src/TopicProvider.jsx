@@ -1,33 +1,27 @@
 import { useEffect, useState } from "react";
 import { fetchArticles, fetchTopics } from "./api";
-import ArticleCard from "./ArticleCard";
-import { Link, useSearchParams } from "react-router-dom";
+import TopicCard from "./TopicCard";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
-export default function Articles() {
-	const [articles, setArticles] = useState([]);
+export default function TopicProvider() {
+	const topicParam = useParams();
+	const [topicArray, setTopicArray] = useState([]);
 	const [topicsNav, setTopicsNav] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const sortByQuery = searchParams.get("sort_by");
 	const orderQuery = searchParams.get("order");
 
 	useEffect(() => {
-		fetchArticles(sortByQuery, orderQuery)
-			.then(({ articles }) => {
-				setArticles(articles);
-				setIsLoading(false);
-			})
-			.catch(() => {
-				setIsLoading(false);
-			});
+		fetchArticles(sortByQuery, orderQuery, topicParam.topic).then(
+			({ articles }) => {
+				setTopicArray(articles);
+			}
+		);
+
 		fetchTopics().then(({ topics }) => {
 			setTopicsNav(topics);
 		});
-	}, [sortByQuery, orderQuery]);
-
-	if (isLoading) {
-		return <img src="../loading.svg" alt="loading animation" />;
-	}
+	}, [sortByQuery, orderQuery, topicParam]);
 
 	const setSortBy = (sort) => {
 		const newParams = new URLSearchParams(searchParams);
@@ -35,7 +29,7 @@ export default function Articles() {
 		setSearchParams(newParams);
 	};
 
-	const SetSortOrder = (direction) => {
+	const setSortOrder = (direction) => {
 		const newParams = new URLSearchParams(searchParams);
 		newParams.set("order", direction);
 		setSearchParams(newParams);
@@ -69,26 +63,24 @@ export default function Articles() {
 				Order:{" "}
 				<select
 					id="order-by-select"
-					onChange={(e) => SetSortOrder(e.target.value)}
+					onChange={(e) => setSortOrder(e.target.value)}
 				>
 					<option value="desc">desc</option>
 					<option value="asc">asc</option>
 				</select>
 			</div>
-			<div className="articles-div">
-				{articles.map((article) => {
-					return (
-						<ArticleCard
-							key={article.article_id}
-							author={article.author}
-							title={article.title}
-							topic={article.topic}
-							img_url={article.article_img_url}
-							article_id={article.article_id}
-						/>
-					);
-				})}
-			</div>
+			{topicArray.map((article) => {
+				return (
+					<TopicCard
+						key={article.article_id}
+						author={article.author}
+						title={article.title}
+						topic={article.topic}
+						img_url={article.article_img_url}
+						article_id={article.article_id}
+					/>
+				);
+			})}
 		</>
 	);
 }
