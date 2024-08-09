@@ -17,6 +17,9 @@ export const fetchArticles = (sort_by, order, topic) => {
 		})
 		.then((response) => {
 			return response.data;
+		})
+		.catch((error) => {
+			return { articles: error.response.data.msg };
 		});
 };
 

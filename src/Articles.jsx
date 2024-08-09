@@ -85,6 +85,9 @@ export default function Articles() {
 							topic={article.topic}
 							img_url={article.article_img_url}
 							article_id={article.article_id}
+							date={article.created_at}
+							votes={article.votes}
+							comment_count={article.comment_count}
 						/>
 					);
 				})}

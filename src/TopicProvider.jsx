@@ -35,6 +35,10 @@ export default function TopicProvider() {
 		setSearchParams(newParams);
 	};
 
+	if (topicArray === "Topic not found") {
+		return <p>Topic not found!</p>;
+	}
+
 	return (
 		<>
 			<nav>

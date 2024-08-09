@@ -6,6 +6,9 @@ export default function ArticleCard({
 	topic,
 	img_url,
 	article_id,
+	date,
+	votes,
+	comment_count,
 }) {
 	return (
 		<Link to={`/articles/${article_id}`}>
@@ -20,6 +23,9 @@ export default function ArticleCard({
 					{topic}
 				</p>
 				<img className="list-img" src={img_url} alt="" />
+				<p>{date}</p>
+				<p>Votes: {votes}</p>
+				<p>Comments: {comment_count}</p>
 			</article>
 		</Link>
 	);
