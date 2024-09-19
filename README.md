@@ -1,8 +1,10 @@
-# React + Vite
+# NC News
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Created and hosted a full-stack CRUD news aggregation application with user interaction features such as content rating and adding comments on articles. 
 
-Currently, two official plugins are available:
+I built a backend service including a RESTful API with Express using a PostgreSQL database and utilising Node.js to provide information to the front-end architecture. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This was created using React, utilising components to sort the routing, grouping articles by topics for example, and ensuring users can only make changes to the database where they are permitted.
+
+Live site: https://sam-hurley.github.io/NC-news/
+
